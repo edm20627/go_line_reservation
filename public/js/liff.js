@@ -34,7 +34,7 @@ function sendMessages(text) {
   }]).then(function () {
       liff.closeWindow();
   }).catch(function (error) {
-      window.alert('Failed to send message ' + error);
+      window.alert('Failed to send message sendMessages ' + error);
   });
 }
 
@@ -43,6 +43,6 @@ function shareTargetPicker(text) {
       'type': 'text',
       'text': text
   }]).catch(function (error) {
-      window.alert('Failed to send message ' + error);
+      window.alert('Failed to send message shareTargetPicker ' + error);
   });
 }

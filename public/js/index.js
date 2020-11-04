@@ -20,18 +20,14 @@ $(function () {
   // 送信
   $('form').submit(function (event) {
       var date = $('input[name="date"]').val();
-      var number = $('input[name="number"]').val();
+      var number = $('input[name="number"]:checked').val();
       var names = '';
       $('#form-name').children().each(function (i, elm) {
           names += $(elm).val() + '、';
       })
       names = names.slice(0, -1);
       var msg = `希望日：${date}\n人数：${number}\n氏名：${names}`;
-      console.log(msg)
-    //   sendMessage(msg);
-      event.preventDefault();
-
-
-    //   return false;
+      sendMessage(msg);
+      return false;
   });
 });

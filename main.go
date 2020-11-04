@@ -6,18 +6,20 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 )
 
 func main() {
-	port := os.Getenv("PORT")
+	var port int
+	if len(os.Args) == 1 {
+		port = 8080
+	} else {
+		port, _ = strconv.Atoi(os.Args[1])
+	}
 	files := http.FileServer(http.Dir("public"))
 	http.Handle("/static/", http.StripPrefix("/static/", files))
 	http.HandleFunc("/", index)
-	if port == "" {
-		http.ListenAndServe(":8080", nil)
-	} else {
-		http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
-	}
+	http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
